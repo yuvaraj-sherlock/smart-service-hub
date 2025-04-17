@@ -2,6 +2,7 @@ package com.smartservicehub.controller;
 
 import com.smartservicehub.dto.UserDto;
 import com.smartservicehub.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDto userDto) {
-        return null;
+        UserDto registeredUser = this.userService.registerUser(userDto);
+        return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 }
